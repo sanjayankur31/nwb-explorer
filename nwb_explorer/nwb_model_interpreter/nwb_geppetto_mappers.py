@@ -316,6 +316,12 @@ class TimeseriesMapper(GenericCompositeMapper):
             variable = self.model_factory.create_text_variable(id="timestamp_link",
                                                                text=next(iter(pynwb_obj.timestamp_link)).name)
             geppetto_composite_type.variables.append(variable)
+            
+        ts = pynwb_obj.timestamps
+        ds = pynwb_obj.data
+        data_info = '; data: %s points, max %s, min %s'%(len(ds), min(ds), max(ds)) if ds is not None else ''
+        geppetto_composite_type.variables.append(
+            self.model_factory.create_text_variable(id='Summary statistics', text='Times: %s points, %s->%s%s'%(len(ts), min(ts), max(ts), data_info)))
 
     def get_object_items(self, pynwb_obj):
         return ((key, value) for key, value in super().get_object_items(pynwb_obj) if key != 'timestamp_link')
