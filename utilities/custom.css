@@ -3051,8 +3051,10 @@ div#notebook {
   .cm-s-ipython .CodeMirror-cursor {
    border-left: 2px solid #0095ff !important;
   }
+  /* FIXME: Temporary fix for https://github.com/MetaCell/nwb-explorer/issues/228
+   * A better colour should be chosen from the design pallet */
   .cm-s-ipython span.cm-comment {
-   color: #75715e;
+   color: #FFFBE9;
    font-style: italic;
   }
   .cm-s-ipython span.cm-atom {
